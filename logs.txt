@@ -1,0 +1,60 @@
+postgresql  | 
+postgresql  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgresql  | 
+postgresql  | 2026-02-24 19:08:48.343 UTC [1] LOG:  starting PostgreSQL 16.12 (Debian 16.12-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+postgresql  | 2026-02-24 19:08:48.343 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgresql  | 2026-02-24 19:08:48.343 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgresql  | 2026-02-24 19:08:48.346 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgresql  | 2026-02-24 19:08:48.352 UTC [29] LOG:  database system was shut down at 2026-02-24 19:02:41 UTC
+postgresql  | 2026-02-24 19:08:48.359 UTC [1] LOG:  database system is ready to accept connections
+api         | [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+api         | 
+api         | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+api         |  - using env:     export GIN_MODE=release
+api         |  - using code:    gin.SetMode(gin.ReleaseMode)
+api         | 
+api         | [GIN-debug] POST   /api/v1/users             --> backend/handlers.(*UserHandler).Create-fm (3 handlers)
+api         | [GIN-debug] GET    /api/v1/users/list        --> backend/handlers.(*UserHandler).List-fm (3 handlers)
+api         | [GIN-debug] POST   /api/v1/experiments       --> backend/handlers.(*ExperimentsHandler).Create-fm (3 handlers)
+api         | [GIN-debug] PATCH  /api/v1/experiments       --> backend/handlers.(*ExperimentsHandler).ChangeStatus-fm (3 handlers)
+api         | [GIN-debug] POST   /api/v1/feature           --> backend/handlers.(*FeatureHandler).GetFeature-fm (3 handlers)
+api         | [GIN-debug] GET    /api/v1/ready             --> backend/handlers.(*HealthHandler).Ready-fm (3 handlers)
+api         | [GIN-debug] GET    /api/v1/health            --> backend/handlers.(*HealthHandler).Health-fm (3 handlers)
+api         | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+api         | Please check https://github.com/gin-gonic/gin/blob/master/docs/doc.md#dont-trust-all-proxies for details.
+api         | [GIN-debug] Listening and serving HTTP on :80
+api         | [GIN] 2026/02/24 - 19:08:57 | 200 |     800.673µs |      172.23.0.1 | GET      "/api/v1/users/list"
+api         | [GIN-debug] redirecting request 307: /api/v1/users --> /api/v1/users
+api         | 
+api         | 2026/02/24 19:09:05 /opt/repository/user_repository.go:37 record not found
+api         | [0.763ms] [rows:0] SELECT * FROM "users" WHERE login = 'pavel228' ORDER BY "users"."id" LIMIT 1
+api         | [GIN] 2026/02/24 - 19:09:06 | 201 |   41.048406ms |      172.23.0.1 | POST     "/api/v1/users"
+api         | 
+api         | 2026/02/24 19:09:15 /opt/repository/experiments_repository.go:33 record not found
+api         | [0.538ms] [rows:0] SELECT * FROM "experiments" WHERE identifier = 'exp_checkout_2026_123456789' ORDER BY "experiments"."id" LIMIT 1
+api         | [GIN] 2026/02/24 - 19:09:15 | 201 |    7.633014ms |      172.23.0.1 | POST     "/api/v1/experiments"
+api         | 
+api         | 2026/02/24 19:09:23 /opt/repository/experiments_repository.go:33 record not found
+api         | [0.521ms] [rows:0] SELECT * FROM "experiments" WHERE identifier = 'exp_checkout_2026_12345678879' ORDER BY "experiments"."id" LIMIT 1
+api         | [GIN] 2026/02/24 - 19:09:23 | 400 |    1.882857ms |      172.23.0.1 | POST     "/api/v1/experiments"
+api         | [GIN] 2026/02/24 - 19:09:36 | 400 |      79.508µs |      172.23.0.1 | POST     "/api/v1/experiments"
+api         | 
+api         | 2026/02/24 19:09:43 /opt/repository/experiments_repository.go:33 record not found
+api         | [0.534ms] [rows:0] SELECT * FROM "experiments" WHERE identifier = 'exp_checkout_2026_12345678879' ORDER BY "experiments"."id" LIMIT 1
+api         | [GIN] 2026/02/24 - 19:09:43 | 201 |    40.73905ms |      172.23.0.1 | POST     "/api/v1/experiments"
+api         | [GIN] 2026/02/24 - 19:09:52 | 400 |    1.112495ms |      172.23.0.1 | PATCH    "/api/v1/experiments"
+api         | [GIN] 2026/02/24 - 19:10:12 | 200 |    7.638613ms |      172.23.0.1 | POST     "/api/v1/feature"
+api         | [GIN] 2026/02/24 - 19:10:25 | 200 |    1.273673ms |      172.23.0.1 | GET      "/api/v1/users/list"
+api         | [GIN] 2026/02/24 - 19:10:35 | 200 |    1.703585ms |      172.23.0.1 | POST     "/api/v1/feature"
+api         | [GIN] 2026/02/24 - 19:10:36 | 200 |    1.236267ms |      172.23.0.1 | POST     "/api/v1/feature"
+api         | [GIN] 2026/02/24 - 19:10:57 | 400 |     356.146µs |      172.23.0.1 | POST     "/api/v1/experiments"
+api         | [GIN] 2026/02/24 - 19:11:01 | 409 |     823.023µs |      172.23.0.1 | POST     "/api/v1/experiments"
+api         | 
+api         | 2026/02/24 19:11:15 /opt/repository/experiments_repository.go:33 record not found
+api         | [0.403ms] [rows:0] SELECT * FROM "experiments" WHERE identifier = 'exp_checkout_2026_123456788790' ORDER BY "experiments"."id" LIMIT 1
+api         | [GIN] 2026/02/24 - 19:11:15 | 201 |    5.999342ms |      172.23.0.1 | POST     "/api/v1/experiments"
+api         | [GIN] 2026/02/24 - 19:11:24 | 200 |    4.027621ms |      172.23.0.1 | POST     "/api/v1/feature"
+api         | [GIN] 2026/02/24 - 19:11:26 | 200 |    1.440315ms |      172.23.0.1 | POST     "/api/v1/feature"
+api         | [GIN] 2026/02/24 - 19:11:27 | 200 |     781.341µs |      172.23.0.1 | POST     "/api/v1/feature"
+api         | [GIN] 2026/02/24 - 19:11:27 | 200 |    1.197184ms |      172.23.0.1 | POST     "/api/v1/feature"
+api         | [GIN] 2026/02/24 - 19:11:28 | 200 |     1.18475ms |      172.23.0.1 | POST     "/api/v1/feature"
